@@ -610,3 +610,27 @@ gallery-container {
   margin: 0 auto; /* Center horizontally */
   padding: 20px; /* Add some padding for better visibility */
 }
+
+
+
+/* Style the pdfCanvas to adjust its size based on screen size */
+#pdfCanvas {
+  width: 80%; /* default width for larger screens */
+  height: 1000px; /* default height for larger screens */
+}
+
+/* Media query for mobile devices (max-width: 768px) */
+@media only screen and (max-width: 768px) {
+  #pdfCanvas {
+    width: 95%; /* adjust width for mobile devices */
+    height: 600px; /* adjust height for mobile devices */
+  }
+}
+
+/* Media query for tablet devices (min-width: 769px) and (max-width: 1024px) */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  #pdfCanvas {
+    width: 85%; /* adjust width for tablet devices */
+    height: 800px; /* adjust height for tablet devices */
+  }
+}

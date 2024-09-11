@@ -80,4 +80,33 @@ function adjustPDFCanvas() {
   // Call adjustPDFCanvas on load and resize
   window.onload = adjustPDFCanvas;
   window.onresize = adjustPDFCanvas;
+
+
   
+  
+  import { PDFDocument } from 'pdfjs-dist/build/pdf';
+
+// ...
+
+archiveImages.forEach(image => {
+  image.addEventListener('click', () => {
+    const pdfSrc = image.getAttribute('data-pdf');
+    if (pdfSrc) {
+      // Use PDF.js to render the PDF file
+      const pdfDoc = new pdfjsLib.PDFDocument();
+      pdfDoc.load(pdfSrc).then(pdf => {
+        const pdfPage = pdf.getPage(1);
+        const scale = 1.5;
+        const viewport = pdfPage.getViewport({ scale: scale });
+        const canvas = document.getElementById('pdfCanvas');
+        const context = canvas.getContext('2d');
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+        pdfPage.render({ canvasContext: context, viewport: viewport });
+      });
+      pdfViewer.classList.remove('hidden'); // Show the PDF viewer
+    } else {
+      console.error('No PDF source found for this image.');
+    }
+  });
+});
